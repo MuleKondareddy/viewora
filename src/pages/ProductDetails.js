@@ -7,7 +7,7 @@ import { useCart } from '../context/CartContext';
 import { formatPrice } from '../utils/helpers';
 import ProductCard from '../components/ProductCard';
 
-const ProductDetail = () => {
+const ProductDetails = () => {
   const { id } = useParams();
   const navigate = useNavigate();
   const product = products.find(p => p.id === parseInt(id));
@@ -230,4 +230,4 @@ const ProductDetail = () => {
   );
 };
 
-export default ProductDetail;
+export default ProductDetails;

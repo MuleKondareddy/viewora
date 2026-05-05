@@ -9,7 +9,11 @@ import ProtectedRoute from './components/ProtectedRoute';
 
 // Pages
 import Home from './pages/Home';
-import ProductDetail from './pages/ProductDetail';
+import About from './pages/About';
+import Contact from './pages/Contact';
+import OurMission from './pages/OurMission';
+import OurTeam from './pages/OurTeam';
+import Viewora from './pages/Viewora';
 import Cart from './pages/Cart';
 import Checkout from './pages/Checkout';
 import Orders from './pages/Orders';
@@ -17,6 +21,8 @@ import OrderTracking from './pages/OrderTracking';
 import Profile from './pages/Profile';
 import Signup from './pages/Auth/Signup';
 import Login from './pages/Auth/Login';
+import Products from './pages/Products';
+import ProductDetails from './pages/ProductDetails';
 
 function App() {
   return (
@@ -30,7 +36,13 @@ function App() {
                 <Routes>
                   {/* Public Routes */}
                   <Route path="/" element={<Home />} />
-                  <Route path="/products/:id" element={<ProductDetail />} />
+                  <Route path="/about" element={<About />} />
+                  <Route path="/contact" element={<Contact />} />
+                  <Route path="/mission" element={<OurMission />} />
+                  <Route path="/team" element={<OurTeam />} />
+                  <Route path="/viewora" element={<Viewora />} />
+                  <Route path="/products" element={<Products />} />
+                  <Route path="/products/:id" element={<ProductDetails />} />
                   <Route path="/auth/signup" element={<Signup />} />
                   <Route path="/auth/login" element={<Login />} />
 

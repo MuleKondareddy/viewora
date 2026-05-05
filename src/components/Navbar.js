@@ -31,14 +31,20 @@ const Navbar = () => {
           {/* Desktop Menu */}
           <div className="hidden md:flex items-center space-x-8">
             <Link to="/" className="text-gray-600 hover:text-primary transition">
-              Shop
+              Home
             </Link>
-            <a href="#about" className="text-gray-600 hover:text-primary transition">
-              About
-            </a>
-            <a href="#contact" className="text-gray-600 hover:text-primary transition">
-              Contact
-            </a>
+            <Link to="/mission" className="text-gray-600 hover:text-primary transition">
+              Mission
+            </Link>
+            <Link to="/team" className="text-gray-600 hover:text-primary transition">
+              Team
+            </Link>
+            <Link to="/products" className="text-gray-600 hover:text-primary transition">
+              Products
+            </Link>
+            <Link to="/viewora" className="text-gray-600 hover:text-primary transition">
+              Viewora
+            </Link>
           </div>
 
           {/* Right Side Icons */}
@@ -106,12 +112,34 @@ const Navbar = () => {
             >
               Shop
             </Link>
-            <a href="#about" className="block px-4 py-2 text-gray-600 hover:bg-gray-50">
-              About
-            </a>
-            <a href="#contact" className="block px-4 py-2 text-gray-600 hover:bg-gray-50">
+            <Link
+              to="/mission"
+              className="block px-4 py-2 text-gray-600 hover:bg-gray-50"
+              onClick={() => setMobileMenuOpen(false)}
+            >
+              Mission
+            </Link>
+            <Link
+              to="/team"
+              className="block px-4 py-2 text-gray-600 hover:bg-gray-50"
+              onClick={() => setMobileMenuOpen(false)}
+            >
+              Team
+            </Link>
+            <Link
+              to="/viewora"
+              className="block px-4 py-2 text-gray-600 hover:bg-gray-50"
+              onClick={() => setMobileMenuOpen(false)}
+            >
+              Viewora
+            </Link>
+            <Link
+              to="/contact"
+              className="block px-4 py-2 text-gray-600 hover:bg-gray-50"
+              onClick={() => setMobileMenuOpen(false)}
+            >
               Contact
-            </a>
+            </Link>
             {!user && (
               <>
                 <Link

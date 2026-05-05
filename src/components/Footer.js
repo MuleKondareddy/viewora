@@ -15,7 +15,7 @@ const Footer = () => {
               <span className="text-xl font-bold">VIEWORA</span>
             </div>
             <p className="text-gray-400 text-sm">
-              Premium optical products for your perfect vision.
+              Design-first eyewear that helps you look sharper, feel confident, and stand out.
             </p>
           </div>
 
@@ -105,9 +105,7 @@ const Footer = () => {
               &copy; 2026 VIEWORA. All rights reserved.
             </p>
             <div className="flex items-center space-x-2 text-gray-400 text-sm">
-              <span>Made with</span>
-              <HeartIcon className="w-4 h-4 text-accent" />
-              <span>for vision lovers</span>
+              <span>Viewora – Let's create something iconic together…….</span>
             </div>
           </div>
         </div>

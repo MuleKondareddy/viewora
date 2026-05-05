@@ -1,202 +1,108 @@
-import React, { useState, useMemo } from 'react';
-import ProductCard from '../components/ProductCard';
-import { products, categories } from '../data/mockData';
-import { SearchIcon } from '@heroicons/react/solid';
+import React from 'react';
+import { Link } from 'react-router-dom';
 
 const Home = () => {
-  const [searchTerm, setSearchTerm] = useState('');
-  const [selectedCategory, setSelectedCategory] = useState('All Products');
-  const [priceRange, setPriceRange] = useState([0, 300]);
-  const [sortBy, setSortBy] = useState('featured');
-
-  // Filter and sort products
-  const filteredProducts = useMemo(() => {
-    let filtered = products.filter(product => {
-      const matchesSearch =
-        product.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        product.description.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        product.brand.toLowerCase().includes(searchTerm.toLowerCase());
-
-      const matchesCategory =
-        selectedCategory === 'All Products' || product.category === selectedCategory;
-
-      const matchesPrice = product.price >= priceRange[0] && product.price <= priceRange[1];
-
-      return matchesSearch && matchesCategory && matchesPrice;
-    });
-
-    // Sort
-    if (sortBy === 'price-low') {
-      filtered.sort((a, b) => a.price - b.price);
-    } else if (sortBy === 'price-high') {
-      filtered.sort((a, b) => b.price - a.price);
-    } else if (sortBy === 'rating') {
-      filtered.sort((a, b) => b.rating - a.rating);
-    } else if (sortBy === 'newest') {
-      filtered.sort((a, b) => b.id - a.id);
-    }
-
-    return filtered;
-  }, [searchTerm, selectedCategory, priceRange, sortBy]);
-
   return (
     <div className="min-h-screen bg-gray-50">
-      {/* Hero Section */}
-      <div className="bg-gradient-to-r from-primary to-primary-dark text-white py-16">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h1 className="text-4xl md:text-5xl font-bold mb-4">
-            Your Perfect Vision Awaits
-          </h1>
-          <p className="text-lg text-blue-100 mb-8">
-            Explore our premium collection of optical products - from sunglasses to
-            contact lenses
-          </p>
-
-          {/* Search Bar */}
-          <div className="relative max-w-2xl">
-            <SearchIcon className="absolute left-4 top-4 w-5 h-5 text-gray-400" />
-            <input
-              type="text"
-              placeholder="Search for glasses, frames, lenses..."
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-              className="w-full pl-12 pr-4 py-3 rounded-lg text-gray-900 focus:outline-none focus:ring-2 focus:ring-accent"
-            />
+      <section className="relative overflow-hidden bg-primary text-white py-24">
+        <div className="absolute inset-0 opacity-30 bg-[radial-gradient(circle_at_top,_rgba(255,255,255,0.25),_transparent_40%)]" />
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid items-center gap-12 lg:grid-cols-2">
+            <div className="space-y-8">
+              <p className="text-sm uppercase tracking-[0.3em] text-blue-100">VIEWORA Eyewear</p>
+              <h1 className="text-4xl md:text-5xl font-bold leading-tight">
+                Premium sunglasses and optical frames crafted for clarity, comfort, and style.
+              </h1>
+              <p className="text-lg text-blue-100 max-w-xl">
+                Explore modern eyewear collections with effortless designs, durable materials, and a polished finish for every look.
+              </p>
+              <div className="flex flex-col sm:flex-row gap-4">
+                <Link
+                  to="/products"
+                  className="inline-flex items-center justify-center rounded-full bg-white px-8 py-3 text-sm font-semibold text-primary shadow-lg transition hover:bg-gray-100"
+                >
+                  Shop Products
+                </Link>
+                <Link
+                  to="/contact"
+                  className="inline-flex items-center justify-center rounded-full border border-white/70 bg-white/10 px-8 py-3 text-sm font-semibold text-white transition hover:bg-white/20"
+                >
+                  Contact Us
+                </Link>
+              </div>
+            </div>
+            <div className="rounded-[2rem] bg-white/10 p-8 backdrop-blur-xl ring-1 ring-white/20">
+              <div className="grid gap-6 sm:grid-cols-2">
+                <div className="space-y-4 rounded-3xl bg-white/15 p-6">
+                  <h2 className="text-xl font-bold">Style that stands out</h2>
+                  <p className="text-sm text-blue-100">
+                    Handpicked eyewear for a polished everyday wardrobe.
+                  </p>
+                </div>
+                <div className="space-y-4 rounded-3xl bg-white/15 p-6">
+                  <h2 className="text-xl font-bold">Quality you can trust</h2>
+                  <p className="text-sm text-blue-100">
+                    Premium materials, strong build, and comfortable fit.
+                  </p>
+                </div>
+                <div className="space-y-4 rounded-3xl bg-white/15 p-6">
+                  <h2 className="text-xl font-bold">Fast shipping</h2>
+                  <p className="text-sm text-blue-100">
+                    Ready to ship and delivered right to your door.
+                  </p>
+                </div>
+                <div className="space-y-4 rounded-3xl bg-white/15 p-6">
+                  <h2 className="text-xl font-bold">Designed to please</h2>
+                  <p className="text-sm text-blue-100">
+                    A selection built to suit modern style and everyday comfort.
+                  </p>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
+      </section>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
-          {/* Sidebar Filters */}
-          <div className="lg:col-span-1">
-            <div className="bg-white rounded-lg shadow-md p-6 sticky top-20">
-              <h3 className="text-lg font-bold text-gray-900 mb-6">Filters</h3>
-
-              {/* Category Filter */}
-              <div className="mb-8">
-                <h4 className="font-semibold text-gray-800 mb-4">Category</h4>
-                <div className="space-y-2">
-                  {categories.map(category => (
-                    <button
-                      key={category}
-                      onClick={() => setSelectedCategory(category)}
-                      className={`block w-full text-left px-3 py-2 rounded transition ${
-                        selectedCategory === category
-                          ? 'bg-primary text-white font-semibold'
-                          : 'text-gray-700 hover:bg-gray-100'
-                      }`}
-                    >
-                      {category}
-                    </button>
-                  ))}
-                </div>
-              </div>
-
-              {/* Price Range Filter */}
-              <div className="mb-8 pb-8 border-b">
-                <h4 className="font-semibold text-gray-800 mb-4">Price Range</h4>
-                <div className="space-y-4">
-                  <div>
-                    <label className="text-sm text-gray-600">Min: ${priceRange[0]}</label>
-                    <input
-                      type="range"
-                      min="0"
-                      max="300"
-                      value={priceRange[0]}
-                      onChange={(e) =>
-                        setPriceRange([parseInt(e.target.value), priceRange[1]])
-                      }
-                      className="w-full"
-                    />
-                  </div>
-                  <div>
-                    <label className="text-sm text-gray-600">Max: ${priceRange[1]}</label>
-                    <input
-                      type="range"
-                      min="0"
-                      max="300"
-                      value={priceRange[1]}
-                      onChange={(e) =>
-                        setPriceRange([priceRange[0], parseInt(e.target.value)])
-                      }
-                      className="w-full"
-                    />
-                  </div>
-                </div>
-              </div>
-
-              {/* Clear Filters */}
-              <button
-                onClick={() => {
-                  setSearchTerm('');
-                  setSelectedCategory('All Products');
-                  setPriceRange([0, 300]);
-                  setSortBy('featured');
-                }}
-                className="w-full btn-outline"
-              >
-                Clear All Filters
-              </button>
-            </div>
+      <section className="py-20">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <p className="text-sm uppercase tracking-[0.3em] text-primary">Start with a fresh look</p>
+            <h2 className="mt-4 text-3xl font-bold text-gray-900 sm:text-4xl">
+              A modern eyewear experience made simple.
+            </h2>
+            <p className="mt-4 text-gray-600 max-w-2xl mx-auto">
+              Browse a curated collection of frames, sunglasses, and lenses. Home is now your launchpad for shopping the full range.
+            </p>
           </div>
 
-          {/* Products Section */}
-          <div className="lg:col-span-3">
-            {/* Toolbar */}
-            <div className="flex justify-between items-center mb-8">
-              <h2 className="text-2xl font-bold text-gray-900">
-                {selectedCategory === 'All Products'
-                  ? 'All Products'
-                  : selectedCategory}
-              </h2>
-              <select
-                value={sortBy}
-                onChange={(e) => setSortBy(e.target.value)}
-                className="input-field w-48"
-              >
-                <option value="featured">Featured</option>
-                <option value="price-low">Price: Low to High</option>
-                <option value="price-high">Price: High to Low</option>
-                <option value="rating">Highest Rated</option>
-                <option value="newest">Newest</option>
-              </select>
+          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+            <div className="rounded-3xl border border-blue-200 bg-gradient-to-br from-blue-50 to-blue-100 p-8 shadow-sm">
+              <h3 className="text-lg font-semibold text-gray-900 mb-2">Premium Sunglasses</h3>
+              <p className="text-gray-700">
+                Fashion-forward designs crafted for both everyday wear and statement looks.
+              </p>
             </div>
-
-            {/* Products Grid */}
-            {filteredProducts.length > 0 ? (
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                {filteredProducts.map(product => (
-                  <ProductCard key={product.id} product={product} />
-                ))}
-              </div>
-            ) : (
-              <div className="text-center py-12">
-                <p className="text-gray-600 text-lg mb-4">
-                  No products found matching your filters.
-                </p>
-                <button
-                  onClick={() => {
-                    setSearchTerm('');
-                    setSelectedCategory('All Products');
-                    setPriceRange([0, 300]);
-                  }}
-                  className="btn-primary"
-                >
-                  Clear Filters
-                </button>
-              </div>
-            )}
-
-            {/* Results Count */}
-            <div className="mt-8 text-center">
-              <p className="text-gray-600">
-                Showing {filteredProducts.length} of {products.length} products
+            <div className="rounded-3xl border border-blue-200 bg-gradient-to-br from-blue-50 to-blue-100 p-8 shadow-sm">
+              <h3 className="text-lg font-semibold text-gray-900 mb-2">UV-Protected Lenses</h3>
+              <p className="text-gray-700">
+                Advanced protection against harmful UV rays with crystal-clear optical quality.
+              </p>
+            </div>
+            <div className="rounded-3xl border border-blue-200 bg-gradient-to-br from-blue-50 to-blue-100 p-8 shadow-sm">
+              <h3 className="text-lg font-semibold text-gray-900 mb-2">Lightweight & Durable</h3>
+              <p className="text-gray-700">
+                Engineered for comfort with materials that resist daily wear and maintain shape.
+              </p>
+            </div>
+            <div className="rounded-3xl border border-blue-200 bg-gradient-to-br from-blue-50 to-blue-100 p-8 shadow-sm">
+              <h3 className="text-lg font-semibold text-gray-900 mb-2">Trend-Driven Designs</h3>
+              <p className="text-gray-700">
+                Modern styles that keep pace with the latest trends and stand the test of time.
               </p>
             </div>
           </div>
         </div>
-      </div>
+      </section>
     </div>
   );
 };
