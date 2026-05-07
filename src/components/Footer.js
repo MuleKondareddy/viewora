@@ -1,5 +1,5 @@
 import React from 'react';
-import { HeartIcon, MailIcon, PhoneIcon, LocationMarkerIcon } from '@heroicons/react/outline';
+import { MailIcon, PhoneIcon, LocationMarkerIcon } from '@heroicons/react/outline';
 
 const Footer = () => {
   return (
